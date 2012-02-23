@@ -25,17 +25,13 @@
   AFURLConnectionOperation *connection = nil;
   for(int i = 0; i < 100000; i++) {
     [connection cancel];
-    [connection release];
-    
-    connection = [[AFURLConnectionOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"http://www.google.com/q=%i", arc4random()]]]];
-    
+    connection = nil;
+    NSString *url = [NSString stringWithFormat:@"https://graph.facebook.com/%i/picture", abs(arc4random())];
+    connection = [[[AFURLConnectionOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]] autorelease];
     [connection setCompletionBlock:^{
-      NSLog(@"Finishing %i", i);
+      NSLog(@"Request %i finished", i);
     }];
-    
-    NSLog(@"Starting %i", i);
     [connection start];
-    
   }
 }
 

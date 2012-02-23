@@ -10,4 +10,6 @@
 
 @interface ViewController : UIViewController
 
+-(IBAction)runStressTest:(id)sender;
+
 @end
