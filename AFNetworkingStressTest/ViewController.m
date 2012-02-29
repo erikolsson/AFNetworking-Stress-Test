@@ -25,6 +25,7 @@
   AFURLConnectionOperation *connection = nil;
   for(int i = 0; i < 100000; i++) {
     [connection cancel];
+    [connection cancel];
     connection = nil;
     NSString *url = [NSString stringWithFormat:@"https://graph.facebook.com/%i/picture", abs(arc4random())];
     connection = [[[AFURLConnectionOperation alloc] initWithRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:url]]] autorelease];
